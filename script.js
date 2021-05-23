@@ -6,6 +6,8 @@ const quoteContainer = document.getElementById('quote-container'),
   authorText = document.getElementById('author'),
   twitterBtn = document.getElementById('twitter'),
   newQuoteButton = document.getElementById('new-quote'),
+  newChuckQuoteButton = document.getElementById('cn-quote'),
+  bgContainer = document.querySelector('.bgContainer'),
   loader = document.getElementById('loader');
 
 
@@ -22,9 +24,29 @@ function loading() {
 function complete() {
   quoteContainer.hidden = false;
   loader.hidden = true;
+  /* Unsplash Random image on load*/
+  bgContainer.style.backgroundImage = "";
+  bgContainer.style.backgroundImage = "url('https://source.unsplash.com/1920x1080/?nature,earth')";
+
 }
 
+
 // Show new quote from api
+function newChuckQuote() {
+  loading();
+  const quote = apiQuotes.value.joke;
+
+  if (quote.length > 120) {
+    quoteText.classList.add('long-quote');
+  } else {
+    quoteText.classList.remove('long-quote');
+  }
+  // Show quote and hide loader 
+  authorText.textContent = 'a Chuck Norris fan';
+  quoteText.innerHTML = quote;
+  complete();
+}
+
 function newQuote() {
   loading();
   // Pick random quote from apiQuotes array from 0-length of array (amount of quotes)
@@ -50,6 +72,7 @@ function newQuote() {
 }
 
 
+
 // Using Async/Await Fetch
 async function getQuotes() {
   loading();
@@ -68,6 +91,24 @@ async function getQuotes() {
   }
 }
 
+async function getChuckQuote() {
+  loading();
+  // URL variable for quotes api
+  const apiUrl = 'http://api.icndb.com/jokes/random';
+  try {
+    const response = await fetch(apiUrl);
+    // Store results to global object
+    apiQuotes = await response.json();
+    // console.log(apiQuotes.value.joke);
+    newChuckQuote();
+
+  } catch (error) {
+    // Catch error here 
+    alert('An error has occured.');
+  }
+}
+
+
 // Tweet a Quote
 function tweetQuote() {
   // From twitter developer page
@@ -77,7 +118,8 @@ function tweetQuote() {
 }
 
 // EventListeners
-newQuoteButton.addEventListener('click', newQuote);
+newQuoteButton.addEventListener('click', getQuotes);
+newChuckQuoteButton.addEventListener('click', getChuckQuote);
 twitterBtn.addEventListener('click', tweetQuote)
 
 // On Load add quote and author to screen

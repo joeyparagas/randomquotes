@@ -9,24 +9,42 @@ body {
   font-weight: 700;
   text-align: center;
   color: #000;
+  background-color: #000;
   margin: 0;
-  min-height: 100vh;
-  background-color: #ffffff;
   /* https://www.heropatterns.com/ */
-  background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2z' fill='%23000000' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+  /* background-image: url("data:image/svg+xml,%3Csvg width='40' height='40' viewBox='0 0 40 40' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M20 20.5V18H0v-2h20v-2H0v-2h20v-2H0V8h20V6H0V4h20V2H0V0h22v20h2V0h2v20h2V0h2v20h2V0h2v20h2V0h2v20h2v2H20v-1.5zM0 20h2v20H0V20zm4 0h2v20H4V20zm4 0h2v20H8V20zm4 0h2v20h-2V20zm4 0h2v20h-2V20zm4 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2zm0 4h20v2H20v-2z' fill='%23000000' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E"); */
   display: flex;
   align-items: center;
   justify-content: center;
+  min-height: 100vh;
+  overflow: hidden;
+}
+
+.bgContainer {
+  position: absolute;
+  top:-10px;
+  right:-10px;
+  left:-10px;
+  background-color: transparent;
+  -webkit-background-size: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-position: center center;
+  height: 110vh;
+  filter: blur(5px);
+  transition: background-image 2s ease;
 }
 
 .quote-container {
+  margin: auto;
+  z-index: 2;
   width: auto;
   max-width: 900px;
   padding: 20px 30px;
   border-radius: 10px;
   background-color: rgba(255, 255, 255, 0.4);
   box-shadow: 0 10px 10px 10px rgba( 0,0,0,0.2);
-}
+  }
 
 .quote-text { 
   font-size: 2.75rem;
@@ -42,6 +60,7 @@ body {
 
 .quote-author { 
   margin-top: 15px;
+  margin-bottom: 30px;
   font-size: 2rem;
   font-weight: 400;
   font-style: italic;
@@ -64,15 +83,22 @@ button {
   outline: none;
   padding: 0.5rem 1.8rem; 
   box-shadow: 0 0.3rem rgba(121, 121, 121, 0.65);
+  transition: color 300ms ease, background-color 300ms ease;
 }
 
 button:hover { 
-  filter: brightness(115%);
+  filter: brightness(115%); 
 }
 
 button:active {
   transform: translate(0, 0.3rem);
   box-shadow: 0 0.1rem rgba(255, 255, 255, 0.65);
+}
+
+#cn-quote:hover { 
+  color: #000;
+  background-color: #C00000;
+  filter: grayscale(10%)
 }
 
 .twitter-button:hover { 
