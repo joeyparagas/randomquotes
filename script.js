@@ -25,8 +25,8 @@ function complete() {
   quoteContainer.hidden = false;
   loader.hidden = true;
   /* Unsplash Random image on load*/
-  // bgContainer.style.backgroundImage = "";
-  // bgContainer.style.backgroundImage = "url('https://source.unsplash.com/1920x1080/?nature,earth')";
+  bgContainer.style.backgroundImage = "";
+  bgContainer.style.backgroundImage = "url('https://source.unsplash.com/1920x1080/?nature,earth')";
 
 }
 
@@ -94,12 +94,11 @@ async function getQuotes() {
 async function getChuckQuote() {
   loading();
   // URL variable for quotes api
-  const apiUrl = 'http://api.icndb.com/jokes/random';
+  const apiUrl = 'https://api.icndb.com/jokes/random/';
   try {
     const response = await fetch(apiUrl);
     // Store results to global object
     apiQuotes = await response.json();
-    // console.log(apiQuotes.value.joke);
     newChuckQuote();
 
   } catch (error) {
@@ -107,8 +106,6 @@ async function getChuckQuote() {
     alert('An error has occured. Please don\'t tell Chuck');
   }
 }
-
-
 // Tweet a Quote
 function tweetQuote() {
   // From twitter developer page
