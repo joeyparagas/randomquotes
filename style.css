@@ -32,6 +32,7 @@ body {
   background-position: center center;
   height: 110vh;
   filter: blur(5px);
+  background-image: url('https://source.unsplash.com/1920x1080/?nature,earth');
   transition: background-image 2s ease;
 }
 
