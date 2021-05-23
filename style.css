@@ -105,6 +105,8 @@ button:active {
   color: #38a1f3;
 }
 
+button .fas { display: none; }
+
 .loader {
   border: 16px solid #DDD;
   border-radius: 50%;
@@ -128,11 +130,13 @@ button:active {
 
 
 /* Media Query: Tablet or Smaller */
-@media screen and ( max-width: 1000px) {
+@media screen and ( max-width: 800px) {
 .quote-container {
   margin: auto 10px;
 }
 
+button .text { display: none; }
+button .fas { display: block;}
 .quote-text { 
   font-size: 2.5rem;
 }
