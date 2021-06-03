@@ -1,5 +1,3 @@
-// Get Quotes from API
-
 // pull HTML elements
 const quoteContainer = document.getElementById('quote-container'),
   quoteText = document.getElementById('quote'),
@@ -14,26 +12,24 @@ const quoteContainer = document.getElementById('quote-container'),
 // Global empty object to store json results of api call
 let apiQuotes = [];
 
-// Show loading 
-function loading() {
+function showLoadingSpinner() {
   loader.hidden = false;
   quoteContainer.hidden = true;
 }
 
-// Hide loading 
-function complete() {
+function removeLoadingSpinner() {
   quoteContainer.hidden = false;
   loader.hidden = true;
   /* Unsplash Random image on load*/
   bgContainer.style.backgroundImage = "";
-  bgContainer.style.backgroundImage = "url('https://source.unsplash.com/1920x1080/?nature,earth')";
+  bgContainer.style.backgroundImage = "url('https://source.unsplash.com/1920x1080/?nature,water)";
 
 }
 
 
 // Show new quote from api
 function newChuckQuote() {
-  loading();
+  showLoadingSpinner();
   const quote = apiQuotes.value.joke;
 
   if (quote.length > 120) {
@@ -44,11 +40,11 @@ function newChuckQuote() {
   // Show quote and hide loader 
   authorText.textContent = 'a Chuck Norris fan';
   quoteText.innerHTML = quote;
-  complete();
+  removeLoadingSpinner();
 }
 
 function newQuote() {
-  loading();
+  showLoadingSpinner();
   // Pick random quote from apiQuotes array from 0-length of array (amount of quotes)
   const quote = apiQuotes[Math.floor(Math.random() * apiQuotes.length)];
 
@@ -67,15 +63,15 @@ function newQuote() {
     quoteText.classList.remove('long-quote');
   }
   // Show quote and hide loader 
-  quoteText.textContent = quote.text;
-  complete();
+  quoteText.innerText = quote.text;
+  removeLoadingSpinner();
 }
 
 
 
 // Using Async/Await Fetch
 async function getQuotes() {
-  loading();
+  showLoadingSpinner();
   // URL variable for quotes api
   const apiUrl = 'https://type.fit/api/quotes';
 
@@ -92,7 +88,7 @@ async function getQuotes() {
 }
 
 async function getChuckQuote() {
-  loading();
+  showLoadingSpinner();
   // URL variable for quotes api
   const apiUrl = 'https://api.icndb.com/jokes/random/';
   try {
